@@ -78,12 +78,14 @@ const MainLayout = () => {
             {/* header */}
             <AppBar
                 enableColorOnDark
-                position='fixed'
+                position='sticky'
                 color='inherit'
                 elevation={0}
                 sx={{
                     bgcolor: theme.palette.background.default,
-                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
+                    top: 0,
+                    zIndex: theme.zIndex.appBar
                 }}
             >
                 <Toolbar sx={{ height: `${headerHeight}px`, borderBottom: '1px solid', borderColor: theme.palette.grey[900] + 25 }}>
