@@ -19,6 +19,7 @@ import {
 } from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
 import DocumentStoreStatus from '@/views/docstore/DocumentStoreStatus'
+import { getDocStoreActionButtonSx } from '@/views/docstore/actionButtonStyles'
 import { IconDotsVertical } from '@tabler/icons-react'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -159,12 +160,12 @@ export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showAc
                             </>
                         ) : (
                             <>
-                                {sortedData.map((row, index) => {
+                                {sortedData.map((row) => {
                                     return (
                                         <StyledTableRow
                                             onClick={() => onRowClick(row)}
                                             hover
-                                            key={index}
+                                            key={row.id}
                                             sx={{ cursor: 'pointer', '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <StyledTableCell>
@@ -255,14 +256,7 @@ export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showAc
                                                     <IconButton
                                                         size='small'
                                                         aria-label='Document store options'
-                                                        sx={{
-                                                            p: 0.5,
-                                                            backgroundColor: theme.palette.background.paper,
-                                                            border: `1px solid ${theme.palette.grey[900]}25`,
-                                                            '&:hover': {
-                                                                backgroundColor: theme.palette.action.hover
-                                                            }
-                                                        }}
+                                                        sx={getDocStoreActionButtonSx(theme)}
                                                         onClick={(event) => {
                                                             event.stopPropagation()
                                                             onActionMenuClick(event, row)
