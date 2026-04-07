@@ -15,7 +15,6 @@ import DocumentStoreCard from '@/ui-component/cards/DocumentStoreCard'
 import MainCard from '@/ui-component/cards/MainCard'
 import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/pagination/TablePagination'
 import AddDocStoreDialog from '@/views/docstore/AddDocStoreDialog'
-import { getDocStoreActionButtonSx } from '@/views/docstore/actionButtonStyles'
 import DeleteDocStoreDialog from '@/views/docstore/DeleteDocStoreDialog'
 
 // API
@@ -36,6 +35,16 @@ import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackba
 import useNotifier from '@/utils/useNotifier'
 
 // ==============================|| DOCUMENTS ||============================== //
+const getDocStoreActionButtonSx = (theme) => ({
+    p: 0.5,
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.default : theme.palette.background.paper,
+    border: `1px solid ${theme.palette.divider}`,
+    '&:hover': {
+        backgroundColor: theme.palette.action.hover,
+        borderColor: theme.palette.text.secondary
+    }
+})
 
 const Documents = () => {
     const theme = useTheme()
@@ -426,6 +435,7 @@ const Documents = () => {
                                     onRowClick={(row) => goToDocumentStore(row.id)}
                                     showActions={canManageDocumentStore}
                                     onActionMenuClick={handleActionMenuOpen}
+                                    actionButtonSx={getDocStoreActionButtonSx(theme)}
                                 />
                             )}
                             {/* Pagination and Page Size Controls */}

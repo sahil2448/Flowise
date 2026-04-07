@@ -19,7 +19,6 @@ import {
 } from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
 import DocumentStoreStatus from '@/views/docstore/DocumentStoreStatus'
-import { getDocStoreActionButtonSx } from '@/views/docstore/actionButtonStyles'
 import { IconDotsVertical } from '@tabler/icons-react'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,7 +40,7 @@ const StyledTableRow = styled(TableRow)(() => ({
     }
 }))
 
-export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showActions, onActionMenuClick }) => {
+export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showActions, onActionMenuClick, actionButtonSx }) => {
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
 
@@ -256,7 +255,7 @@ export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showAc
                                                     <IconButton
                                                         size='small'
                                                         aria-label='Document store options'
-                                                        sx={getDocStoreActionButtonSx(theme)}
+                                                        sx={actionButtonSx}
                                                         onClick={(event) => {
                                                             event.stopPropagation()
                                                             onActionMenuClick(event, row)
@@ -284,7 +283,8 @@ DocumentStoreTable.propTypes = {
     images: PropTypes.object,
     onRowClick: PropTypes.func,
     showActions: PropTypes.bool,
-    onActionMenuClick: PropTypes.func
+    onActionMenuClick: PropTypes.func,
+    actionButtonSx: PropTypes.object
 }
 
 DocumentStoreTable.displayName = 'DocumentStoreTable'
